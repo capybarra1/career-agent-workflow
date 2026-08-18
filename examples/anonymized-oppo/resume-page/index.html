@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>林然｜AI 产品经理｜合成示例</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="toolbar" role="toolbar" aria-label="简历编辑工具">
+    <button id="editButton" type="button">开始编辑</button>
+    <label>行距 <input id="lineHeight" type="range" min="1.25" max="1.80" value="1.50" step="0.05"></label>
+    <button id="exportButton" type="button">备份内容</button>
+    <label class="file-button">恢复内容<input id="importInput" type="file" accept="application/json"></label>
+    <button id="resetButton" type="button" class="quiet">恢复模板</button>
+    <button id="printButton" type="button" class="primary">打印 / 导出 PDF</button>
+  </div>
+
+  <main class="resume" id="resume">
+    <header class="resume-header editable">
+      <div class="identity">
+        <h1>林然</h1>
+        <p class="contact">000-0000-0000 <span>｜</span> linran@example.com <span>｜</span> 上海 <span>｜</span> 2027 届</p>
+      </div>
+      <figure class="portrait-frame" contenteditable="false">
+        <img src="portrait-placeholder.svg" alt="个人照片占位符">
+      </figure>
+    </header>
+
+    <section class="resume-section editable">
+      <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5-9-5Z"/><path d="M7 11.5V16c3 2 7 2 10 0v-4.5"/><path d="M21 9v6"/></svg></span>教育背景</h2>
+      <article class="entry">
+        <div class="entry-head"><strong>示例大学｜信息管理与信息系统 硕士</strong><time>2024.09—2027.06</time></div>
+        <ul><li>核心课程：产品设计、数据分析、机器学习应用；研究方向为人机协同与智能产品体验。</li></ul>
+      </article>
+    </section>
+
+    <section class="resume-section editable">
+      <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></span>实习经历</h2>
+      <article class="entry">
+        <div class="entry-head"><strong>星河科技（虚构）｜AI 产品实习生</strong><time>2026.03—2026.07</time></div>
+        <ul>
+          <li><b>用户研究：</b>围绕知识检索场景访谈 12 名目标用户，归纳信息定位慢、答案依据不清两类核心问题，形成需求优先级与验证指标。</li>
+          <li><b>方案设计：</b>设计检索、追问与来源查看流程，独立完成高保真原型及 PRD，并组织产品、算法和研发评审。</li>
+          <li><b>推进验证：</b>跟进接口联调、测试用例和问题清单，协同完成内部测试，根据反馈迭代空状态、引用展示与失败提示。</li>
+          <li><b>结果沉淀：</b>输出产品规则、验收清单和复盘文档，为下一阶段小范围试用提供统一口径。</li>
+        </ul>
+      </article>
+      <article class="entry">
+        <div class="entry-head"><strong>远山零售（虚构）｜数据产品实习生</strong><time>2025.07—2025.11</time></div>
+        <ul>
+          <li><b>指标梳理：</b>访谈运营与门店使用者，整理销售、库存和活动三类场景，统一 18 项周报指标的定义与计算口径。</li>
+          <li><b>看板设计：</b>使用 Figma 设计经营看板原型，补充筛选、下钻和异常提示规则，组织两轮业务验收。</li>
+          <li><b>协作交付：</b>维护需求与问题清单，协调数据与前端确认字段映射，沉淀指标字典和使用说明。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="resume-section editable">
+      <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/><path d="M3 11h18"/></svg></span>项目经历</h2>
+      <article class="entry compact">
+        <div class="entry-head"><strong>求职信息助手｜产品负责人</strong><time>2026.01—2026.05</time></div>
+        <ul>
+          <li><b>产品设计：</b>设计岗位采集、结构化评分、简历生成和本地排版工作流，完成信息架构、交互原型与测试任务。</li>
+          <li><b>用户验证：</b>邀请 8 名同学完成可用性测试，按任务完成情况与反馈调整字段提示、评分解释和确认机制。</li>
+        </ul>
+      </article>
+      <article class="entry compact">
+        <div class="entry-head"><strong>校园活动推荐｜产品与数据分析</strong><time>2025.03—2025.06</time></div>
+        <ul>
+          <li><b>问题分析：</b>分析问卷和匿名行为数据，识别新用户偏好不足的问题，设计兴趣标签与分步采集方案。</li>
+          <li><b>方案产出：</b>用 Python 完成数据清洗与基础分析，以 Figma 呈现推荐理由和反馈入口，形成课程项目报告。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="resume-section editable combined-section">
+      <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12 7 21l5-3 5 3-1.5-9"/><path d="m10 8 1.3 1.3L14 6.7"/></svg></span>个人荣誉与技能</h2>
+      <ul>
+        <li><b>主要技能：</b>用户访谈、需求分析、PRD、Figma、SQL、Python、Excel、Prompt 设计。</li>
+        <li><b>荣誉称号：</b>研究生一等奖学金（合成）。</li>
+        <li><b>竞赛获奖：</b>校级创新项目优秀结项（合成）。</li>
+      </ul>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
