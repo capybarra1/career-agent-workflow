@@ -1,0 +1,14 @@
+interface:
+  display_name: 简历排版
+  short_description: 将更新后的简历生成美观、可编辑、可打印导出的A4网页版本
+  default_prompt: Use $resume-layout to turn my updated resume into an editable, polished
+    A4 web resume.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
