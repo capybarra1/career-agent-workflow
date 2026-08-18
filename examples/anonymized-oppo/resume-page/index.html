@@ -10,6 +10,7 @@
   <div class="toolbar" role="toolbar" aria-label="简历编辑工具">
     <button id="editButton" type="button">开始编辑</button>
     <label>行距 <input id="lineHeight" type="range" min="1.25" max="1.80" value="1.50" step="0.05"></label>
+    <label>整体字号 <input id="fontScale" type="range" min="0.92" max="1.08" value="1.00" step="0.01"></label>
     <button id="exportButton" type="button">备份内容</button>
     <label class="file-button">恢复内容<input id="importInput" type="file" accept="application/json"></label>
     <button id="resetButton" type="button" class="quiet">恢复模板</button>
@@ -23,7 +24,7 @@
         <p class="contact">000-0000-0000 <span>｜</span> linran@example.com <span>｜</span> 上海 <span>｜</span> 2027 届</p>
       </div>
       <figure class="portrait-frame" contenteditable="false">
-        <img src="portrait-placeholder.svg" alt="个人照片占位符">
+        <img src="portrait-placeholder.svg" alt="个人照片占位符" data-static-asset="portrait">
       </figure>
     </header>
 
@@ -58,14 +59,14 @@
 
     <section class="resume-section editable">
       <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/><path d="M3 11h18"/></svg></span>项目经历</h2>
-      <article class="entry compact">
+      <article class="entry compact" data-source-project-id="career-information-assistant">
         <div class="entry-head"><strong>求职信息助手｜产品负责人</strong><time>2026.01—2026.05</time></div>
         <ul>
           <li><b>产品设计：</b>设计岗位采集、结构化评分、简历生成和本地排版工作流，完成信息架构、交互原型与测试任务。</li>
           <li><b>用户验证：</b>邀请 8 名同学完成可用性测试，按任务完成情况与反馈调整字段提示、评分解释和确认机制。</li>
         </ul>
       </article>
-      <article class="entry compact">
+      <article class="entry compact" data-source-project-id="campus-activity-recommendation">
         <div class="entry-head"><strong>校园活动推荐｜产品与数据分析</strong><time>2025.03—2025.06</time></div>
         <ul>
           <li><b>问题分析：</b>分析问卷和匿名行为数据，识别新用户偏好不足的问题，设计兴趣标签与分步采集方案。</li>
