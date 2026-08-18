@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>可编辑简历</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="toolbar" role="toolbar" aria-label="简历编辑工具">
+    <button id="editButton" type="button">开始编辑</button>
+    <label>行距 <input id="lineHeight" type="range" min="1.25" max="1.80" value="1.50" step="0.05"></label>
+    <button id="exportButton" type="button">备份内容</button>
+    <label class="file-button">恢复内容<input id="importInput" type="file" accept="application/json"></label>
+    <button id="resetButton" type="button" class="quiet">恢复模板</button>
+    <button id="printButton" type="button" class="primary">打印 / 导出 PDF</button>
+  </div>
+
+  <main class="resume" id="resume">
+    <header class="resume-header editable">
+      <div class="identity">
+        <h1>[姓名]</h1>
+        <p class="contact">[电话] <span>｜</span> [邮箱] <span>｜</span> [所在地]</p>
+      </div>
+      <figure class="portrait-frame" contenteditable="false">
+        <img src="portrait-placeholder.svg" alt="个人照片">
+      </figure>
+    </header>
+
+    <section class="resume-section editable">
+      <h2><span class="section-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5-9-5Z"/><path d="M7 11.5V16c3 2 7 2 10 0v-4.5"/><path d="M21 9v6"/></svg>
+      </span>教育背景</h2>
+      <article class="entry">
+        <div class="entry-head"><strong>[学校名称]｜[专业名称]</strong><time>[20XX.09—20XX.06]</time></div>
+        <ul><li>[学历、排名、核心课程或与岗位相关的教育信息]</li></ul>
+      </article>
+    </section>
+
+    <section class="resume-section editable">
+      <h2><span class="section-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg>
+      </span>实习经历</h2>
+      <article class="entry">
+        <div class="entry-head"><strong>[公司名称]｜[岗位名称]</strong><time>[20XX.XX—至今]</time></div>
+        <ul>
+          <li><b>[核心成果]</b>：[优先写完整产品闭环、上线成果或最匹配岗位的工作]</li>
+          <li><b>[用户与问题]</b>：[说明服务对象、业务场景、研究或需求分析方法]</li>
+          <li><b>[方案与协作]</b>：[说明方案设计、评审、联调、测试和推进过程]</li>
+          <li><b>[结果]</b>：[仅填写有依据的量化结果、项目阶段或验证反馈]</li>
+        </ul>
+      </article>
+      <article class="entry">
+        <div class="entry-head"><strong>[公司名称]｜[岗位名称]</strong><time>[20XX.XX—20XX.XX]</time></div>
+        <ul>
+          <li><b>[核心项目]</b>：[项目职责与关键贡献]</li>
+          <li><b>[产品方法]</b>：[需求、场景、交互或产品规划]</li>
+          <li><b>[交付]</b>：[PRD、原型、评审、测试或上线成果]</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="resume-section editable">
+      <h2><span class="section-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/><path d="M3 11h18"/></svg>
+      </span>项目经历</h2>
+      <article class="entry compact">
+        <div class="entry-head"><strong>[项目名称]｜[项目角色]</strong><time>[20XX.XX—20XX.XX]</time></div>
+        <ul>
+          <li><b>[目标与方法]</b>：[项目问题、研究或设计方法]</li>
+          <li><b>[分析与产出]</b>：[关键分析、方案和交付结果]</li>
+        </ul>
+      </article>
+      <article class="entry compact">
+        <div class="entry-head"><strong>[项目名称]｜[项目角色]</strong><time>[20XX.XX—20XX.XX]</time></div>
+        <ul>
+          <li><b>[目标与方法]</b>：[项目问题、研究或设计方法]</li>
+          <li><b>[分析与产出]</b>：[关键分析、方案和交付结果]</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="resume-section editable combined-section">
+      <h2><span class="section-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12 7 21l5-3 5 3-1.5-9"/><path d="m10 8 1.3 1.3L14 6.7"/></svg>
+      </span>个人荣誉与技能</h2>
+      <ul>
+        <li><b>主要技能：</b>[用一条单行内容概括岗位最相关的产品、研究与工具能力]</li>
+        <li><b>荣誉称号：</b>[保留最有分量的荣誉称号]</li>
+        <li><b>竞赛获奖：</b>[保留最有分量的 2–4 项奖项]</li>
+      </ul>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
+
