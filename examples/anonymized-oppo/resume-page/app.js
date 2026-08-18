@@ -3,19 +3,38 @@
   const resume = document.querySelector("#resume");
   const editButton = document.querySelector("#editButton");
   const lineHeight = document.querySelector("#lineHeight");
+  const fontScale = document.querySelector("#fontScale");
   const importInput = document.querySelector("#importInput");
   let editing = false;
 
+  const staticAssets = [...resume.querySelectorAll("[data-static-asset]")].map(node => ({
+    key: node.dataset.staticAsset,
+    selector: node.dataset.staticAsset === "portrait" ? ".portrait-frame img" : `[data-static-asset="${node.dataset.staticAsset}"]`,
+    attributes: Object.fromEntries(["src", "srcset", "alt"].filter(name => node.hasAttribute(name)).map(name => [name, node.getAttribute(name)])),
+  }));
+
+  const refreshStaticAssets = () => {
+    for (const asset of staticAssets) {
+      const node = resume.querySelector(`[data-static-asset="${asset.key}"]`) || resume.querySelector(asset.selector);
+      if (!node) continue;
+      node.dataset.staticAsset = asset.key;
+      for (const [name, value] of Object.entries(asset.attributes)) node.setAttribute(name, value);
+    }
+  };
+
   const save = () => {
-    const payload = { html: resume.innerHTML, lineHeight: lineHeight.value, savedAt: new Date().toISOString() };
+    const payload = { html: resume.innerHTML, lineHeight: lineHeight.value, fontScale: fontScale.value, savedAt: new Date().toISOString() };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   };
 
   const apply = payload => {
     if (!payload || typeof payload.html !== "string") return;
     resume.innerHTML = payload.html;
+    refreshStaticAssets();
     if (payload.lineHeight) lineHeight.value = payload.lineHeight;
+    if (payload.fontScale) fontScale.value = payload.fontScale;
     document.documentElement.style.setProperty("--line-height", lineHeight.value);
+    document.documentElement.style.setProperty("--font-scale", fontScale.value);
   };
 
   try { apply(JSON.parse(localStorage.getItem(STORAGE_KEY))); } catch (_) {}
@@ -31,6 +50,10 @@
   resume.addEventListener("input", () => { if (editing) save(); });
   lineHeight.addEventListener("input", () => {
     document.documentElement.style.setProperty("--line-height", lineHeight.value);
+    save();
+  });
+  fontScale.addEventListener("input", () => {
+    document.documentElement.style.setProperty("--font-scale", fontScale.value);
     save();
   });
 
@@ -60,4 +83,3 @@
     event.target.value = "";
   });
 })();
-
