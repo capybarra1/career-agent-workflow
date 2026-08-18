@@ -10,6 +10,7 @@
   <div class="toolbar" role="toolbar" aria-label="简历编辑工具">
     <button id="editButton" type="button">开始编辑</button>
     <label>行距 <input id="lineHeight" type="range" min="1.25" max="1.80" value="1.50" step="0.05"></label>
+    <label>整体字号 <input id="fontScale" type="range" min="0.92" max="1.08" value="1.00" step="0.01"></label>
     <button id="exportButton" type="button">备份内容</button>
     <label class="file-button">恢复内容<input id="importInput" type="file" accept="application/json"></label>
     <button id="resetButton" type="button" class="quiet">恢复模板</button>
@@ -23,7 +24,7 @@
         <p class="contact">[电话] <span>｜</span> [邮箱] <span>｜</span> [所在地]</p>
       </div>
       <figure class="portrait-frame" contenteditable="false">
-        <img src="portrait-placeholder.svg" alt="个人照片">
+        <img src="portrait-placeholder.svg" alt="个人照片" data-static-asset="portrait">
       </figure>
     </header>
 
@@ -64,14 +65,14 @@
       <h2><span class="section-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/><path d="M3 11h18"/></svg>
       </span>项目经历</h2>
-      <article class="entry compact">
+      <article class="entry compact" data-source-project-id="project-1">
         <div class="entry-head"><strong>[项目名称]｜[项目角色]</strong><time>[20XX.XX—20XX.XX]</time></div>
         <ul>
           <li><b>[目标与方法]</b>：[项目问题、研究或设计方法]</li>
           <li><b>[分析与产出]</b>：[关键分析、方案和交付结果]</li>
         </ul>
       </article>
-      <article class="entry compact">
+      <article class="entry compact" data-source-project-id="project-2">
         <div class="entry-head"><strong>[项目名称]｜[项目角色]</strong><time>[20XX.XX—20XX.XX]</time></div>
         <ul>
           <li><b>[目标与方法]</b>：[项目问题、研究或设计方法]</li>
@@ -94,4 +95,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
