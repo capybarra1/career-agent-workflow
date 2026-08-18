@@ -32,7 +32,7 @@ flowchart LR
 先复制本页仓库地址，然后运行：
 
 ```bash
-git clone <复制的仓库地址>
+git clone https://github.com/capybarra1/career-agent-workflow.git
 cd career-agent-workflow
 npx skills add . -y -g
 ```
