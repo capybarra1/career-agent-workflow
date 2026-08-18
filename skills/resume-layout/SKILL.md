@@ -1,6 +1,6 @@
 ---
 name: resume-layout
-description: Use when a user asks to format, beautify, restyle, edit, print, or export a confirmed Chinese or bilingual resume as an editable A4 web page or PDF.
+description: Use when a user asks to create, restyle, tailor, or export a Chinese or bilingual resume as an editable A4 webpage or printable PDF.
 ---
 
 # 简历排版
@@ -30,9 +30,15 @@ Build the deliverable from the bundled webpage template. Preserve the user's fac
    - Merge skills and honors as “个人荣誉与技能” when using the default house style.
    - Put every skill category into exactly one concise `主要技能` bullet. Never split skills into separate product, research, software, or technical rows.
    - Follow it with one `荣誉称号` bullet and one `竞赛获奖` bullet when those facts exist. Do not invent a missing row.
+   - Build a source-project inventory before layout and assign each selected project a stable `data-source-project-id` in the generated HTML.
+   - Merge all phases, research, design, POC, and outcomes that belong to the same source project into one entry. 同一项目不得拆分 into multiple peer projects merely because its stages differ; one source ID may appear only once.
+   - Keep peer projects and roles at comparable 颗粒度 and detail. Major selected work may be longer, but avoid mixing a whole product, a sub-feature, and a one-off task as equivalent entries.
 4. Adapt content ordering to the target job, but never invent numbers, outcomes, accuracy, or launch status.
 5. Apply the visual specification in `references/design-system.md`.
 6. Keep the built-in editing and export controls from the template.
+   - Provide independent `行距` and `整体字号` sliders. The font scale range is 92%–108%; changing either control must not change the other.
+   - Persist both controls automatically in localStorage and JSON backup/restore.
+   - Treat portraits and other template assets as protected static assets. Restoring older localStorage/JSON may restore editable text and layout values, but must run a 静态资源迁移 so an old image URL cannot overwrite the current portrait.
 7. Validate before delivery:
    - Run `python3 scripts/validate_resume.py <site-directory>`.
    - Run `node scripts/validate_page_fill.cjs <site-directory>` in a browser-capable environment. The lowest meaningful text edge must end within 94%–98.5% of the full A4 sheet height, with no vertical or horizontal overflow.
@@ -41,6 +47,8 @@ Build the deliverable from the bundled webpage template. Preserve the user's fac
    - Confirm the default print is one A4 page and visually fills the sheet. “One page” alone is not sufficient when a large blank area remains below the final section.
    - Tune each resume independently; do not reuse one density setting across versions with different content lengths.
    - Confirm the photo is fully visible with its original aspect ratio.
+   - Measure header alignment, entry-title/body ratio, divider-to-content gap, portrait ratio, and static-asset migration with browser tests; do not accept CSS-string presence alone.
+   - Before delivery, audit the source-project inventory against output entries and explicitly confirm a one-to-one mapping: no source ID appears twice, no project stage becomes a peer project, and peer entries use comparable abstraction and detail.
 8. If publishing as a website, follow the available Sites building and hosting skills. Return both the editable webpage and a printable/exportable result when requested.
 
 ## Non-negotiable style rules
@@ -49,10 +57,15 @@ Build the deliverable from the bundled webpage template. Preserve the user's fac
 - Use restrained blue only for section headings, icons, and fine dividers.
 - Use semantic line icons: education, work, projects, and award/skill icons must match their section.
 - Use a compact header without a written “求职方向” line unless the user asks for one.
-- Use `object-fit: contain` for the portrait; never crop it.
+- Keep the name/contact block and portrait in the 同一行 and vertically centered. Do not place them one above the other, and do not leave a large gap before education.
+- Make each internship/project entry title at least 1.12× the body size, at least 600 weight, and visibly distinct. Use deep gray for lowest-level detail text and a darker color for titles and bullet labels.
+- Give adjacent experience/project entries a larger gap than ordinary bullet spacing. 分隔线与下方第一行内容保持 1.4–3.5 mm visible space.
+- Use `object-fit: contain`, intrinsic aspect ratio, and `overflow: visible` for the portrait; never crop, mask, stretch, or use `cover`.
+- Use the latest complete user-provided portrait. If it is embedded in a screenshot, deterministic removal of only the outer screenshot border/shadow is allowed; do not alter face/body pixels. 不得使用 AI 补全, outpainting, beautification, facial redraw, or identity-changing generation unless the user explicitly requests it.
 - Use actual list markers, not decorative text characters or pseudo-bullets that disappear in print.
 - Keep skills on one list item and one visual line at the default width whenever possible; shorten the skill list before allowing it to wrap.
 - Keep line spacing adjustable and persist the chosen setting locally.
+- Keep overall font scale independently adjustable from 92% to 108% and persist it locally. Font scaling must apply consistently to body, name, section headings, entry headings, and dates without scaling the A4 sheet itself.
 - Keep all principal text editable in the browser and preserve edits across reloads.
 - Hide controls in print and export cleanly to A4 PDF.
 - Keep the lowest meaningful text edge within 94%–98.5% of full A4 sheet height. Below 94% is underfilled; above 98.5% risks clipping and is overfilled even when the browser still reports one page.
@@ -76,6 +89,12 @@ Fit the content to the page; do not merely fit the page around the content.
 4. Re-render after every meaningful adjustment. The PDF must remain exactly one A4 page with no clipping, overlap, or content pressed against the bottom edge.
 
 Judge fill using the lowest visible edge among meaningful text elements (`h1`, section headings, contact text, entry headings, and list items), not the A4 element's `min-height`, blank containers, or decorative elements.
+
+## Editable state and protected assets
+
+- Capture current template asset URLs before applying saved HTML. After localStorage or JSON restore, reapply the current portrait URL/alt text to the portrait node while preserving user-edited text and allowed layout settings.
+- Prefer stable `data-static-asset` markers. Support migration from older backups that lack the marker by using a safe structural fallback such as `.portrait-frame img`.
+- Never solve an asset update by changing the storage key and silently discarding user edits. Add a regression test: stale saved HTML points to portrait A, current template points to portrait B; after reload/import, portrait B remains and a saved text edit is retained.
 
 ## Bundled resources
 
